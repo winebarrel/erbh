@@ -1,7 +1,7 @@
 require 'erb'
 
 module ERBh
-  def erbh(str, variables, options = {})
+  def erbh(str, variables = {}, options = {})
     options = {
       :safe_level => nil,
       :trim_mode => nil,
