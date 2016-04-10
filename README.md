@@ -27,7 +27,7 @@ include ERBh
 erbh('<%= @foo %>, <%= @bar %>', foo: 100, bar: 'zoo')
 #=> "100, zoo"
 
-erbh(<<-EOS, foo: 1..3, {bar: 'zoo'}, trim_mode: '-')
+erbh(<<-EOS, {foo: 1..3}, trim_mode: '-')
 <%- @foo.each do |i| -%>
 <%= i %>
 <%- end -%>
