@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Simple ERB helper.}
   spec.description   = %q{Simple ERB helper.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = 'https://github.com/winebarrel/erbh'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
