@@ -27,7 +27,7 @@ module ERBh
     end
 
     context.instance_eval do
-      erb = ERB.new(str, *options.values_at(:safe_level, :trim_mode, :eoutvar))
+      erb = ERB.new("<% @#{options[:eoutvar]} = #{options[:eoutvar]} %>" + str, *options.values_at(:safe_level, :trim_mode, :eoutvar))
       erb.result(binding)
     end
   end
