@@ -35,4 +35,22 @@ describe ERBh do
 
     it { is_expected.to eq '100, zoo, 100zoo' }
   end
+
+  context 'when use _erbout' do
+    before do
+      described_class.define_method(:chomp) do |obj|
+        if obj.nil?
+          @_erbout.sub!(/,\s*\z/, '')
+          ''
+        else
+          obj
+        end
+      end
+    end
+
+    let(:str) { '100, <%= chomp @foo %>' }
+    let(:variables) { {foo: nil} }
+
+    it { is_expected.to eq '100' }
+  end
 end
