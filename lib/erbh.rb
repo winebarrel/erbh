@@ -1,6 +1,12 @@
 require 'erb'
 
 module ERBh
+  @@methods = {}
+
+  def self.define_method(name, &block)
+    @@methods[name] = block
+  end
+
   def erbh(str, variables = {}, options = {})
     options = {
       :safe_level => nil,
@@ -12,6 +18,12 @@ module ERBh
 
     variables.each do |name, value|
       context.instance_variable_set("@#{name}", value)
+    end
+
+    class << context
+      @@methods.each do |name, block|
+        define_method(name, &block)
+      end
     end
 
     context.instance_eval do

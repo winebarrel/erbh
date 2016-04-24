@@ -24,4 +24,15 @@ describe ERBh do
 
     it { is_expected.to eq "1\n2\n3\n" }
   end
+
+  context 'when define helper methods' do
+    before do
+      described_class.define_method(:concat) {|a, b| a.to_s + b.to_s }
+    end
+
+    let(:str) { '<%= @foo %>, <%= @bar %>, <%= concat @foo, @bar %>' }
+    let(:variables) { {foo: 100, bar: 'zoo'} }
+
+    it { is_expected.to eq '100, zoo, 100zoo' }
+  end
 end
