@@ -10,7 +10,7 @@ describe ERBh do
     it { is_expected.to eq '100, zoo' }
   end
 
-  context 'when evaluate with trim_mode' do
+  context 'when evaluate multiline' do
     let(:str) do
       <<-EOS
 <%- @foo.each do |i| -%>
@@ -20,7 +20,21 @@ describe ERBh do
     end
 
     let(:variables) { {foo: 1..3} }
-    let(:options) { {trim_mode: '-'} }
+
+    it { is_expected.to eq "1\n2\n3\n" }
+  end
+
+  context 'when evaluate with trim_mode' do
+    let(:str) do
+      <<-EOS
+% @foo.each do |i|
+<%= i %>
+% end
+      EOS
+    end
+
+    let(:variables) { {foo: 1..3} }
+    let(:options) { {trim_mode: '%'} }
 
     it { is_expected.to eq "1\n2\n3\n" }
   end
@@ -52,5 +66,23 @@ describe ERBh do
     let(:variables) { {foo: nil} }
 
     it { is_expected.to eq '100' }
+  end
+
+  context 'when update default options' do
+    before do
+      ERBh.default_options.update(trim_mode: '%')
+    end
+
+    let(:str) do
+      <<-EOS
+% @foo.each do |i|
+<%= i %>
+% end
+      EOS
+    end
+
+    let(:variables) { {foo: 1..3} }
+
+    it { is_expected.to eq "1\n2\n3\n" }
   end
 end
