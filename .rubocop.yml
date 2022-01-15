@@ -2,7 +2,7 @@ AllCops:
   Exclude:
     - "gemfiles/**/*"
     - "vendor/bundle/**/*"
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.6
   NewCops: enable
 Metrics/AbcSize:
   Enabled: false
