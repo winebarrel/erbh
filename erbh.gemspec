@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'erbh'
   spec.version       = '0.2.0'
   spec.authors       = ['Genki Sugawara']
-  spec.email         = ['sugawara@cookpad.com']
+  spec.email         = ['sugawara@winebarrel.jp']
 
   spec.summary       = 'Simple ERB helper.'
   spec.description   = 'Simple ERB helper.'
