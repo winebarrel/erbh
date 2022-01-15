@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'erbh'
-  spec.version       = '0.1.3'
+  spec.version       = '0.2.0'
   spec.authors       = ['Genki Sugawara']
   spec.email         = ['sugawara@cookpad.com']
 
