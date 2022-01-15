@@ -6,7 +6,6 @@ module ERBh # rubocop:disable Style/Documentation
   @methods = {}
 
   @default_options = {
-    safe_level: nil,
     trim_mode: '-',
     eoutvar: '_erbout'
   }
@@ -38,8 +37,7 @@ module ERBh # rubocop:disable Style/Documentation
     end
 
     context.instance_eval do
-      erb = ERB.new("<% @#{options[:eoutvar]} = #{options[:eoutvar]} %>\n" + str,
-                    *options.values_at(:safe_level, :trim_mode, :eoutvar))
+      erb = ERB.new("<% @#{options[:eoutvar]} = #{options[:eoutvar]} %>\n" + str, **options)
       erb.result(binding).sub(/\A\n/, '')
     end
   end
