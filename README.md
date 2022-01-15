@@ -2,6 +2,8 @@
 
 Simple ERB helper.
 
+[![test](https://github.com/winebarrel/erbh/actions/workflows/test.yml/badge.svg)](https://github.com/winebarrel/erbh/actions/workflows/test.yml)
+
 ## Installation
 
 Add this line to your application's Gemfile:
