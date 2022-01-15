@@ -2,8 +2,6 @@
 
 Simple ERB helper.
 
-[![Build Status](https://travis-ci.org/winebarrel/erbh.svg?branch=master)](https://travis-ci.org/winebarrel/erbh)
-
 ## Installation
 
 Add this line to your application's Gemfile:

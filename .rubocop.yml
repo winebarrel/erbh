@@ -1,0 +1,12 @@
+AllCops:
+  Exclude:
+    - "gemfiles/**/*"
+    - "vendor/bundle/**/*"
+  TargetRubyVersion: 2.5
+  NewCops: enable
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false

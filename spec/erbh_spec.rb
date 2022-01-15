@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe ERBh do
   subject { described_class.erbh(str, variables, options) }
 
@@ -5,47 +7,47 @@ describe ERBh do
 
   context 'when evaluate' do
     let(:str) { '<%= @foo %>, <%= @bar %>' }
-    let(:variables) { {foo: 100, bar: 'zoo'} }
+    let(:variables) { { foo: 100, bar: 'zoo' } }
 
     it { is_expected.to eq '100, zoo' }
   end
 
   context 'when evaluate multiline' do
     let(:str) do
-      <<-EOS
-<%- @foo.each do |i| -%>
-<%= i %>
-<%- end -%>
-      EOS
+      <<~ERB
+        <%- @foo.each do |i| -%>
+        <%= i %>
+        <%- end -%>
+      ERB
     end
 
-    let(:variables) { {foo: 1..3} }
+    let(:variables) { { foo: 1..3 } }
 
     it { is_expected.to eq "1\n2\n3\n" }
   end
 
   context 'when evaluate with trim_mode' do
     let(:str) do
-      <<-EOS
-% @foo.each do |i|
-<%= i %>
-% end
-      EOS
+      <<~ERB
+        % @foo.each do |i|
+        <%= i %>
+        % end
+      ERB
     end
 
-    let(:variables) { {foo: 1..3} }
-    let(:options) { {trim_mode: '%'} }
+    let(:variables) { { foo: 1..3 } }
+    let(:options) { { trim_mode: '%' } }
 
     it { is_expected.to eq "1\n2\n3\n" }
   end
 
   context 'when define helper methods' do
     before do
-      described_class.define_method(:concat) {|a, b| a.to_s + b.to_s }
+      described_class.define_method(:concat) { |a, b| a.to_s + b.to_s }
     end
 
     let(:str) { '<%= @foo %>, <%= @bar %>, <%= concat @foo, @bar %>' }
-    let(:variables) { {foo: 100, bar: 'zoo'} }
+    let(:variables) { { foo: 100, bar: 'zoo' } }
 
     it { is_expected.to eq '100, zoo, 100zoo' }
   end
@@ -63,7 +65,7 @@ describe ERBh do
     end
 
     let(:str) { '100, <%= chomp @foo %>' }
-    let(:variables) { {foo: nil} }
+    let(:variables) { { foo: nil } }
 
     it { is_expected.to eq '100' }
   end
@@ -74,14 +76,14 @@ describe ERBh do
     end
 
     let(:str) do
-      <<-EOS
-% @foo.each do |i|
-<%= i %>
-% end
-      EOS
+      <<~ERB
+        % @foo.each do |i|
+        <%= i %>
+        % end
+      ERB
     end
 
-    let(:variables) { {foo: 1..3} }
+    let(:variables) { { foo: 1..3 } }
 
     it { is_expected.to eq "1\n2\n3\n" }
   end
